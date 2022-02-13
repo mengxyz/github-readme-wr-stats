@@ -72,4 +72,64 @@ async function extractBattleStats(html: string): Promise<BattleStats> {
   }
 }
 
-export { extractPlayerInfo, extractBattleStats };
+async function extractMostPlayedChampions(
+  html: string
+): Promise<Array<MostPlayedChampions>> {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  try {
+    await page.setContent(html);
+    const chamCards = await page.$eval(
+      "body > div:nth-child(9) > div.box_content.champion_list.pt-2",
+      (el) => {
+        return el.outerHTML;
+      }
+    );
+    const champRe = /https.*.[.jpg]/gm;
+    let champIcons = chamCards.match(champRe);
+
+    const champWinRate: Array<number> = [0, 0, 0];
+    for (let i = 1; i < 4; i++) {
+      champWinRate[i - 1] = await page.$eval(
+        `div.box_content.champion_list.pt-2 > div:nth-child(${i}) > div:nth-child(2) > div.champion_card_stat.text-gold`,
+        (el) => {
+          return Number.parseFloat(el.innerHTML);
+        }
+      );
+    }
+    const gameCount: Array<number> = [0, 0, 0];
+    for (let i = 1; i < 4; i++) {
+      gameCount[i - 1] = await page.$eval(
+        `div.box_content.champion_list.pt-2 > div:nth-child(${i}) > div:nth-child(2) > div.champion_card_mini_stat.text-vivid-gold`,
+        (el) => {
+          return Number.parseFloat(el.innerHTML.split(" ")[0]);
+        }
+      );
+    }
+    return <Array<MostPlayedChampions>>[
+      {
+        champIconUrl: champIcons?.[0] ?? "",
+        winrate: champWinRate[0],
+        gameCount: gameCount[0],
+      },
+      {
+        champIconUrl: champIcons?.[1] ?? "",
+        winrate: champWinRate[1],
+        gameCount: gameCount[1],
+      },
+      {
+        champIconUrl: champIcons?.[2] ?? "",
+        winrate: champWinRate[2],
+        gameCount: gameCount[2],
+      },
+    ];
+  } catch (e) {
+    console.log(e);
+    throw Error("Cant extract MostPlayedChampions Data");
+  } finally {
+    await page.close();
+    await browser.close();
+  }
+}
+
+export { extractPlayerInfo, extractBattleStats, extractMostPlayedChampions };

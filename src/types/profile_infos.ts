@@ -1,7 +1,7 @@
 interface ProfileInfo {
   playerInfo: PlayerInfo;
   battleStats: BattleStats;
-  mostPlayedChampions: MostPlayedChampions;
+  mostPlayedChampions: Array<MostPlayedChampions>;
 }
 
 interface PlayerInfo {

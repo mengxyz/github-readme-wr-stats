@@ -1,4 +1,8 @@
-import { extractPlayerInfo, extractBattleStats } from "../extract-data";
+import {
+  extractPlayerInfo,
+  extractBattleStats,
+  extractMostPlayedChampions,
+} from "../extract-data";
 import fs from "fs";
 
 test("extract player info", () => {
@@ -38,9 +42,31 @@ test("extract Battle stats", async () => {
   expect(await extractBattleStats(html)).toStrictEqual(expectData);
 }, 10000);
 
-// test("extract Most Played Champions", () => {
-//   throw Error();
-// });
+test("extract Most Played Champions", async () => {
+  const html = fs.readFileSync(
+    __dirname + "/data/mock_avilable_data.html",
+    "utf-8"
+  );
+  const expectData: Array<MostPlayedChampions> = [
+    {
+      champIconUrl: "https://cdn.wildstats.gg/images/champions/icons/10021.jpg",
+      winrate: 50,
+      gameCount: 334,
+    },
+    {
+      champIconUrl: "https://cdn.wildstats.gg/images/champions/icons/10081.jpg",
+      winrate: 47.14,
+      gameCount: 210,
+    },
+    {
+      champIconUrl: "https://cdn.wildstats.gg/images/champions/icons/10048.jpg",
+      winrate: 56.29,
+      gameCount: 151,
+    },
+  ];
+
+  expect(await extractMostPlayedChampions(html)).toStrictEqual(expectData);
+}, 10000);
 
 // test("extract Recent Matchs", () => {
 //   throw Error();
