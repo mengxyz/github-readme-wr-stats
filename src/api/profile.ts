@@ -15,7 +15,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       throw Error("ccant get profile");
     }
     const html = fs.readFileSync(
-      __dirname + "/../../template/profile.html",
+      __dirname + "/../template/profile.html",
       "utf8"
     );
     browser = await puppeteer.launch();
