@@ -1,0 +1,19 @@
+
+name: Update wild rift profile
+
+on:
+  schedule:
+    # Runs "every 2 hours" (see https://crontab.guru)
+    - cron: '0 */2 * * *'
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Feed new profile
+        run: wget -O /art/wr_profile.png https://github-readme-wr-stats-mengxyz.vercel.app/api/profile?profile=uYMx9DHw09rvbi5iFNzH
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: art/**/*.png art/**/*.jpg
+
+    
