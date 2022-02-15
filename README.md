@@ -19,6 +19,15 @@ lose_color  | false | color code default red
 
 <img src="https://github-readme-wr-stats.vercel.app/api/wr?font_color=white&profile=uYMx9DHw09rvbi5iFNzH&max=5">
 
+# Wild rift profile
+
+```html
+<img src="./atr/wr_profile.png">
+```
+
+<img src="./atr/wr_profile.png">
+
+
 # How to get profile
 
 - go to https://sea.wildstats.gg/en
