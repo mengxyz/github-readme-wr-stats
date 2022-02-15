@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Feed new profile
-        run: wget -O /art/wr_profile.png https://github-readme-wr-stats-mengxyz.vercel.app/api/profile?profile=uYMx9DHw09rvbi5iFNzH
+        run: curl -X GET https://github-readme-wr-stats-mengxyz.vercel.app/api/profile?profile=uYMx9DHw09rvbi5iFNzH --output ./art/wr_profile.png 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: art/**/*.png art/**/*.jpg
