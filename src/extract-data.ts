@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 async function extractPlayerInfo(page: puppeteer.Page): Promise<PlayerInfo> {
   try {
