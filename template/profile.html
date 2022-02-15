@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <style>
+      .card {
+        height: 65px;
+        width: 300px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 16px;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+          rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+      }
+      .profile-rank-icon > img {
+        height: 70px;
+        width: 70px;
+      }
+      .profile-rank-icon {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        height: 100px;
+        width: 100%;
+      }
+      .profile-id,
+      .profile-rank {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      .profile-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .profile {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        color: black;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="profile-content">
+      <div class="card">
+        <div class="profile">
+          <div class="profile-info">
+            <span class="profile-id">{ID}</span>
+            <span class="profile-rank">{RANK}</span>
+          </div>
+          <div class="profile-rank-icon">
+            <img src="{RANK_ICON}" alt="Rank icon" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,31 +1,39 @@
-import cheerio from "cheerio";
 import puppeteer from "puppeteer";
 
-function extractPlayerInfo(html: string): PlayerInfo {
-  const $ = cheerio.load(html);
-  const name = $("#playerName").text();
-  const tag = $("#playerTag").text();
-  const level = $(".profile-level").first().text().split(" ")[1].trim();
-  const rankContainer = $($(".profile-header > div").toArray()[1]);
-  const rankLogoUrl = $(rankContainer).find("img").first().attr("src") ?? "";
-  const rankTitle = $(rankContainer).find("span").first().text();
+async function extractPlayerInfo(page: puppeteer.Page): Promise<PlayerInfo> {
+  try {
+    const name = await page.$eval("#playerName", (el) => el.innerHTML);
+    const tag = await page.$eval("#playerTag", (el) => el.innerHTML);
+    const level = await page.$eval(".profile-level", (el) =>
+      el.innerHTML.split(" ")[1].trim()
+    );
 
-  return <PlayerInfo>{
-    name: name,
-    tag: tag,
-    level: level,
-    rank: <Rank>{
-      logoUrl: rankLogoUrl,
-      title: rankTitle,
-    },
-  };
+    const rankLogoUrl = await page.$eval(
+      ".profile-header > div:nth-child(2) > img",
+      (el) => el.getAttribute("src")
+    );
+    const rankTitle = await page.$eval(
+      ".profile-header > div:nth-child(2) > span",
+      (el) => el.innerHTML
+    );
+
+    return <PlayerInfo>{
+      name: name,
+      tag: tag,
+      level: level,
+      rank: <Rank>{
+        logoUrl: rankLogoUrl,
+        title: rankTitle,
+      },
+    };
+  } catch (e) {
+    console.log(e);
+    throw Error("canot extract player info");
+  }
 }
 
-async function extractBattleStats(html: string): Promise<BattleStats> {
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
+async function extractBattleStats(page: puppeteer.Page): Promise<BattleStats> {
   try {
-    await page.setContent(html);
     const winRate = await page.$eval(
       "#battleStats_WinRate",
       (el) => el.innerHTML
@@ -66,19 +74,13 @@ async function extractBattleStats(html: string): Promise<BattleStats> {
     };
   } catch (error) {
     throw Error("Page not found");
-  } finally {
-    await page.close();
-    await browser.close();
   }
 }
 
 async function extractMostPlayedChampions(
-  html: string
+  page: puppeteer.Page
 ): Promise<Array<MostPlayedChampions>> {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
   try {
-    await page.setContent(html);
     const chamCards = await page.$eval(
       "body > div:nth-child(9) > div.box_content.champion_list.pt-2",
       (el) => {
@@ -126,9 +128,6 @@ async function extractMostPlayedChampions(
   } catch (e) {
     console.log(e);
     throw Error("Cant extract MostPlayedChampions Data");
-  } finally {
-    await page.close();
-    await browser.close();
   }
 }
 

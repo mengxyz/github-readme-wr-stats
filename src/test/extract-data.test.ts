@@ -4,8 +4,9 @@ import {
   extractMostPlayedChampions,
 } from "../extract-data";
 import fs from "fs";
+import testUtils from "./test-utils";
 
-test("extract player info", () => {
+test("extract player info", async () => {
   const html = fs.readFileSync(
     __dirname + "/data/mock_avilable_data.html",
     "utf-8"
@@ -19,9 +20,11 @@ test("extract player info", () => {
     },
     level: "40",
   };
-
-  expect(extractPlayerInfo(html)).toStrictEqual(expectData);
-});
+  await testUtils(async (page) => {
+    await page.setContent(html);
+    expect(await extractPlayerInfo(page)).toStrictEqual(expectData);
+  });
+}, 10000);
 
 test("extract Battle stats", async () => {
   const html = fs.readFileSync(
@@ -39,7 +42,10 @@ test("extract Battle stats", async () => {
     adt: 17_197,
     atd: 1_387,
   };
-  expect(await extractBattleStats(html)).toStrictEqual(expectData);
+  testUtils(async (page) => {
+    await page.setContent(html);
+    expect(await extractBattleStats(page)).toStrictEqual(expectData);
+  });
 }, 10000);
 
 test("extract Most Played Champions", async () => {
@@ -65,7 +71,10 @@ test("extract Most Played Champions", async () => {
     },
   ];
 
-  expect(await extractMostPlayedChampions(html)).toStrictEqual(expectData);
+  await testUtils(async (page) => {
+    await page.setContent(html);
+    expect(await extractMostPlayedChampions(page)).toStrictEqual(expectData);
+  });
 }, 10000);
 
 // test("extract Recent Matchs", () => {
