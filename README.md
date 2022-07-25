@@ -4,6 +4,7 @@
 Query  | Rrquired | Value
 ------------- | ------------- | -------------
 profile  | true | profile id
+region  | true | eu, na, sea
 max  | false | max of history row default 5
 font_color  | false | color code default black
 win_color  | false | color code default green
@@ -19,13 +20,13 @@ lose_color  | false | color code default red
 
 <img src="https://github-readme-wr-stats.vercel.app/api/wr?font_color=white&profile=uYMx9DHw09rvbi5iFNzH&max=5">
 
-# Wild rift profile
+<!-- # Wild rift profile
 
 ```html
 <img src="./atr/wr_profile.png">
 ```
 
-<img src="./atr/wr_profile.png">
+<img src="./atr/wr_profile.png"> -->
 
 
 # How to get profile
