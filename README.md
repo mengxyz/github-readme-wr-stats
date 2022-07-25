@@ -15,10 +15,10 @@ lose_color  | false | color code default red
 - Example
 
 ```html
-<img src="https://github-readme-wr-stats.vercel.app/api/wr?font_color=white&profile=uYMx9DHw09rvbi5iFNzH&max=5">
+<img src="https://github-readme-wr-stats.vercel.app/api/wr?font_color=white&profile=uYMx9DHw09rvbi5iFNzH&max=5&region=sea">
 ```
 
-<img src="https://github-readme-wr-stats.vercel.app/api/wr?font_color=white&profile=uYMx9DHw09rvbi5iFNzH&max=5">
+<img src="https://github-readme-wr-stats.vercel.app/api/wr?font_color=white&profile=uYMx9DHw09rvbi5iFNzH&max=5&region=sea">
 
 <!-- # Wild rift profile
 
