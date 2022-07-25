@@ -1,17 +1,20 @@
 import axios from "axios";
 import cheerio from "cheerio";
 
-import { BASE_API_ENDPOINT } from "./constant";
+import { BASE_API_ENDPOINT, REGION_KEY } from "./constant";
 
 async function getUserStatsPlain(
   profile: string,
+  region: string,
   font_color: string,
   max: number,
   win_color: string,
   lose_color: string
 ): Promise<string> {
   try {
-    const result = await axios.get(`${BASE_API_ENDPOINT}${profile}`);
+    const result = await axios.get(
+      `${BASE_API_ENDPOINT}${profile}`.replace(REGION_KEY, region)
+    );
     return historyTable(result.data, font_color, max, win_color, lose_color);
   } catch (error) {
     return "error";

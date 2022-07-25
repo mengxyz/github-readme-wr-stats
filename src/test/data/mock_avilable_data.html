@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description"
+        content="จารแดง - player profile data. Includes: Name, Most Played Champions, Achievements, KDA Statistics, Match History, Builds (if Available), Battle Statistics (if available) and more." />
+    <meta name="keywords" content="จารแดง, Champions, Builds, Statistics, KDA, Rank." />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="SjAO54AW5UGLUdIrXmEIcBls5zmwV6fHnMAbiLIp" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.wildstats.gg/images/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.wildstats.gg/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.wildstats.gg/images/favicon/favicon-16x16.png" />
+
+    <link rel="manifest" href="https://cdn.wildstats.gg/images/favicon/site.webmanifest" crossorigin="anonymous" />
+
+    <title>Wild Stats Player Profile: จารแดง - South East Asian Sector</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" />
+
+    <link rel="stylesheet" href="https://cdn.wildstats.gg/css/app.css?id=559b79fde0dcad731f1b" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+
+    <script src="https://cdn.wildstats.gg/js/vendor.js?id=1bc91b956db7df1b001b"></script>
+    <script src="https://cdn.wildstats.gg/js/app.js?id=ec0cedffe16ef90766ac"></script>
+
+    <script data-ad-client="ca-pub-6665260310033792" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SBMY3RDL6G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag("js", new Date());
+        gtag("config", "G-SBMY3RDL6G");
+
+        const baseURL = "/en";
+    </script>
+</head>
+
+<body class="">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary bg-shadow">
+        <div class="container mr-auto">
+            <a class="navbar-brand" href="/en">
+                <img src="https://cdn.wildstats.gg/images/logo-main.png" class="navbar-brand-logo" />
+                <span class="badge badge-small badge-gold">Beta</span>
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <div class="close-icon py-1 close">
+                    <span aria-hidden="true">&times;</span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto mt-4 mt-sm-0">
+                    <li class="nav-item text-uppercase">
+                        <a class="nav-link" href="/en/leaderboard"> Leaderboard </a>
+                    </li>
+                    <li class="nav-item text-uppercase">
+                        <a class="nav-link" href="/en/champions/statistics">
+                            champions
+                        </a>
+                    </li>
+                </ul>
+
+                <form id="puuidForm" method="POST" action="/en/profile/gameid" accept-charset="UTF-8"
+                    class="form-inline my-0">
+                    <div class="input-group py-3 p-lg-0">
+                        <input name="_token" type="hidden" value="SjAO54AW5UGLUdIrXmEIcBls5zmwV6fHnMAbiLIp" />
+                        <div id="idListDisplay" class="dropdown-menu" aria-labelledby="puuidTextField">
+                            <div class="dropdown-item mt-2 mb-0 text-left">
+                                <a class="text-white" href="/en/help/accountid">
+                                    How to find your Player ID
+                                </a>
+                            </div>
+                        </div>
+                        <input id="puuidTextField" autocomplete="off" type="search" aria-haspopup="true"
+                            aria-expanded="false" role="button" data-toggle="dropdown" data-placement="bottom"
+                            data-html="true" data-delay='{ "show": 200, "hide": 50 }' class="form-control" name="gameid"
+                            placeholder="Enter your Player#Tag" title="" />
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary navbar-search-button"
+                                onclick="$('#puuidTextField')[0].style.backgroundColor='#1e3243'; event.preventDefault(); wr.checkInput($('#puuidTextField')[0]);">
+                                <img src="https://cdn.wildstats.gg/images/ic-search-white-24-dp.svg" />
+                            </button>
+                        </div>
+                        <div class="dropdown show ml-2">
+                            <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="dropdown-menu-region-icon"></div>
+                                SEA
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-region" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="//na.wildstats.gg/en">North America</a>
+                                <a class="dropdown-item" href="//eu.wildstats.gg/en">Europe</a>
+                                <a class="dropdown-item" href="//sea.wildstats.gg/en">South East Asia</a>
+                            </div>
+                        </div>
+                    </div>
+                    <input style="display: none" type="submit" value="submit" />
+                    <script>
+                        try {
+                            wr.popPlayerBox();
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    </script>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        .bg-header-small:before {
+            background-image: url("https://cdn.wildstats.gg/images/champions/headers/10021.jpg");
+        }
+    </style>
+    <div id="playerName" style="display: none">จารแดง</div>
+    <div id="playerTag" style="display: none">0000</div>
+    <div class="container-fluid p-0 bg-header-small">
+        <div class="container">
+            <div class="row profile-header">
+                <div class="col-12 col-sm-9 text-center text-sm-left align-self-sm-center order-2 order-sm-2">
+                    <h3 class="pt-0 pt-sm-4 text-center text-sm-left">จารแดง</h3>
+                    <div class="profile-level">Level 40</div>
+                    <span class="profile-updated text-muted pl-3">Updated 1 second from now</span>
+                </div>
+                <div class="col-12 col-sm-3 align-self-sm-center text-center order-1 order-sm-2">
+                    <img src="https://cdn.wildstats.gg/images/ranks/emerald.png" />
+                    <br />
+                    <span class="badge badge-overlay text-white">Emerald IV</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-4"></div>
+
+    <div class="container p-2 p-sm-0 bg-feature bg-shadow-none bg-shadow-sm">
+        <div class="box_header">
+            <div class="dropdown float-right profile-battle-select mr-sm-3">
+                <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="battleTypeSelector"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    All Battles
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="battleTypeSelector">
+                    <button class="dropdown-item" type="button" onClick="drawStats('all', 'All Battles')">
+                        All Battles
+                    </button>
+                    <button class="dropdown-item" type="button" onClick="drawStats('normal', 'Normal')">
+                        Normal
+                    </button>
+                    <button class="dropdown-item" type="button" onClick="drawStats('ranked', 'Ranked')">
+                        Ranked
+                    </button>
+                </div>
+            </div>
+            <h1>Battle Stats</h1>
+        </div>
+        <div class="box_content">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <div class="row">
+                        <div class="col-6 col-md-12 pb-4 pb-md-0 align-self-center">
+                            <div class="profile_top_chart">
+                                <canvas id="topChart" width="100%" height="100%"></canvas>
+                                <div class="profile_top_chart_text">
+                                    <h1 class="text-center m-0" id="battleStats_WinRate"></h1>
+                                    <span class="text-muted">Win Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 text-center py-4 align-self-center">
+                            <h1 class="text-center m-0" id="battleStats_MVP"></h1>
+                            <span class="text-muted">MVP</span>
+                        </div>
+                        <div class="col-3 col-md-6 text-center py-4 align-self-center">
+                            <h1 class="text-center m-0" id="battleStats_Played"></h1>
+                            <span class="text-muted">Played</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-1"></div>
+                <div class="col-12 col-md-8 align-self-center">
+                    <div class="row py-2">
+                        <div class="col-8 text-muted">Average KDA</div>
+                        <div class="col-4 text-light text-right" id="battleStats_Kda"></div>
+                        <div class="col-12 pt-1">
+                            <div class="progress">
+                                <div class="progress-bar" id="battleStats_Kda_bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-8 text-muted">Teamfight participation</div>
+                        <div class="col-4 text-light text-right" id="battleStats_Teamfight"></div>
+                        <div class="col-12 pt-1">
+                            <div class="progress">
+                                <div class="progress-bar" id="battleStats_Teamfight_bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-8 text-muted">Gold per minute</div>
+                        <div class="col-4 text-light text-right" id="battleStats_GoldPerMinute"></div>
+                        <div class="col-12 pt-1">
+                            <div class="progress">
+                                <div class="progress-bar" id="battleStats_GoldPerMinute_bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-8 text-muted">Average damage dealt</div>
+                        <div class="col-4 text-light text-right" id="battleStats_DamageDealt"></div>
+                        <div class="col-12 pt-1">
+                            <div class="progress">
+                                <div class="progress-bar" id="battleStats_DamageDealt_bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-8 text-muted">Average damage taken</div>
+                        <div class="col-4 text-light text-right" id="battleStats_DamageTaken"></div>
+                        <div class="col-12 pt-1">
+                            <div class="progress">
+                                <div class="progress-bar" id="battleStats_DamageTaken_bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-8 text-muted">Average tower damage</div>
+                        <div class="col-4 text-light text-right" id="battleStats_DamageDealtToTowers"></div>
+                        <div class="col-12 pt-1">
+                            <div class="progress">
+                                <div class="progress-bar" id="battleStats_DamageDealtToTowers_bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-4"></div>
+
+    <div class="container p-2 p-sm-0 bg-feature bg-shadow-none bg-shadow-sm">
+        <div class="box_header">
+            <h1>Most Played Champions</h1>
+        </div>
+        <div class="box_content champion_list pt-2">
+            <div class="champion_card bg-shadow bg-shadow-sm-none">
+                <div class="champion_card_chart">
+                    <canvas id="favoriteChamp0" width="100" height="100"></canvas>
+                    <div class="champion_card_icon" style="
+                background-image: url(https://cdn.wildstats.gg/images/champions/icons/10021.jpg);
+              "></div>
+                </div>
+                <div style="text-align: center">
+                    <div class="champion_card_title text-gold">Win Rate</div>
+                    <div class="champion_card_stat text-gold">50.00%</div>
+                    <div class="champion_card_mini_stat text-vivid-gold">334 Games</div>
+                </div>
+                <script>
+                    let favoriteChampChart0 = new Chart(
+                        document.getElementById("favoriteChamp0").getContext("2d"),
+                        {
+                            type: "doughnut",
+                            data: {
+                                datasets: [
+                                    {
+                                        data: [167, 167],
+                                        backgroundColor: ["#daae5d", "#1f374d"],
+                                        borderColor: ["#051b2e", "#051b2e"],
+                                        borderWidth: 2,
+                                    },
+                                ],
+                                labels: ["Wins", "Losses"],
+                            },
+                            options: {
+                                cutoutPercentage: 85,
+                                legend: { display: false },
+                                tooltips: false,
+                            },
+                        }
+                    );
+                </script>
+            </div>
+            <div class="champion_card bg-shadow bg-shadow-sm-none">
+                <div class="champion_card_chart">
+                    <canvas id="favoriteChamp1" width="100" height="100"></canvas>
+                    <div class="champion_card_icon" style="
+                background-image: url(https://cdn.wildstats.gg/images/champions/icons/10081.jpg);
+              "></div>
+                </div>
+                <div style="text-align: center">
+                    <div class="champion_card_title text-gold">Win Rate</div>
+                    <div class="champion_card_stat text-gold">47.14%</div>
+                    <div class="champion_card_mini_stat text-vivid-gold">210 Games</div>
+                </div>
+                <script>
+                    let favoriteChampChart1 = new Chart(
+                        document.getElementById("favoriteChamp1").getContext("2d"),
+                        {
+                            type: "doughnut",
+                            data: {
+                                datasets: [
+                                    {
+                                        data: [99, 111],
+                                        backgroundColor: ["#daae5d", "#1f374d"],
+                                        borderColor: ["#051b2e", "#051b2e"],
+                                        borderWidth: 2,
+                                    },
+                                ],
+                                labels: ["Wins", "Losses"],
+                            },
+                            options: {
+                                cutoutPercentage: 85,
+                                legend: { display: false },
+                                tooltips: false,
+                            },
+                        }
+                    );
+                </script>
+            </div>
+            <div class="champion_card bg-shadow bg-shadow-sm-none">
+                <div class="champion_card_chart">
+                    <canvas id="favoriteChamp2" width="100" height="100"></canvas>
+                    <div class="champion_card_icon" style="
+                background-image: url(https://cdn.wildstats.gg/images/champions/icons/10048.jpg);
+              "></div>
+                </div>
+                <div style="text-align: center">
+                    <div class="champion_card_title text-gold">Win Rate</div>
+                    <div class="champion_card_stat text-gold">56.29%</div>
+                    <div class="champion_card_mini_stat text-vivid-gold">151 Games</div>
+                </div>
+                <script>
+                    let favoriteChampChart2 = new Chart(
+                        document.getElementById("favoriteChamp2").getContext("2d"),
+                        {
+                            type: "doughnut",
+                            data: {
+                                datasets: [
+                                    {
+                                        data: [85, 66],
+                                        backgroundColor: ["#daae5d", "#1f374d"],
+                                        borderColor: ["#051b2e", "#051b2e"],
+                                        borderWidth: 2,
+                                    },
+                                ],
+                                labels: ["Wins", "Losses"],
+                            },
+                            options: {
+                                cutoutPercentage: 85,
+                                legend: { display: false },
+                                tooltips: false,
+                            },
+                        }
+                    );
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-4"></div>
+
+    <div class="container p-2 p-sm-0 bg-feature bg-shadow-none bg-shadow-sm">
+        <div class="box_header">
+            <h1>Recent Matches</h1>
+        </div>
+        <table class="w-100 table-primary table-battle-log table-hover bg-feature">
+            <tbody>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898779452691154252">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10060.jpg" />
+                            <div class="badge badge-pill badge-gold">14</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2267.png" data-toggle="tooltip"
+                                    title="Essence Reaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2249.png" data-toggle="tooltip"
+                                    title="Mortal Reminder" />
+                                <img src="https://cdn.wildstats.gg/images/items/2259.png" data-toggle="tooltip"
+                                    title="Guardian Angel" />
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2460.png" data-toggle="tooltip"
+                                    title="Steel-plated Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">5</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">8</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">15</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">15k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-red">Loss</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-red">Loss</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked</div>
+                        <div class="battle-log-date text-nowrap">3 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">3 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898777253666478264">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10060.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2267.png" data-toggle="tooltip"
+                                    title="Essence Reaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2269.png" data-toggle="tooltip"
+                                    title="Serylda&#039;s Grudge" />
+                                <img src="https://cdn.wildstats.gg/images/items/2271.png" data-toggle="tooltip"
+                                    title="Navori Quickblades" />
+                                <img src="https://cdn.wildstats.gg/images/items/2305.png" data-toggle="tooltip"
+                                    title="Chain Vest" />
+                                <img src="https://cdn.wildstats.gg/images/items/2460.png" data-toggle="tooltip"
+                                    title="Steel-plated Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">5</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">5</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">4</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">16k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-red">Loss</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-red">Loss</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked</div>
+                        <div class="battle-log-date text-nowrap">4 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">4 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898782751223010623">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10017.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2256.png" data-toggle="tooltip"
+                                    title="Duskblade of Draktharr" />
+                                <img src="https://cdn.wildstats.gg/images/items/2241.png" data-toggle="tooltip"
+                                    title="Black Cleaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2255.png" data-toggle="tooltip"
+                                    title="Youmuu&#039;s Ghostblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2269.png" data-toggle="tooltip"
+                                    title="Serylda&#039;s Grudge" />
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2407.png" data-toggle="tooltip"
+                                    title="Ionian Boots of Lucidity" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">7</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">6</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">7</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">15k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-red">Loss</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-red">Loss</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked</div>
+                        <div class="battle-log-date text-nowrap">4 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">4 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898777253663241781">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10060.jpg" />
+                            <div class="badge badge-pill badge-gold">13</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2241.png" data-toggle="tooltip"
+                                    title="Black Cleaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2161.png" data-toggle="tooltip"
+                                    title="Edge of Night" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2305.png" data-toggle="tooltip"
+                                    title="Chain Vest" />
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2450.png" data-toggle="tooltip"
+                                    title="Mercury&#039;s Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">1</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">5</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">15</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">13k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-green">Win</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-green">Win</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked</div>
+                        <div class="battle-log-date text-nowrap">5 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">5 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898782751162899562">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10010.jpg" />
+                            <div class="badge badge-pill badge-gold">12</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2242.png" data-toggle="tooltip"
+                                    title="Blade of the Ruined King" />
+                                <img src="https://cdn.wildstats.gg/images/items/2245.png" data-toggle="tooltip"
+                                    title="Infinity Edge" />
+                                <div class="battle-log-items-empty"></div>
+                                <div class="battle-log-items-empty"></div>
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2405.png" data-toggle="tooltip"
+                                    title="Mercury&#039;s Treads" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">4</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">6</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">6</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">11k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-green">Win</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ultra Rapid Fire</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-green">Win</span>
+                        </div>
+                        <div class="battle-log-mode">Ultra Rapid Fire</div>
+                        <div class="battle-log-date text-nowrap">20 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">20 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898777253603625940">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10060.jpg" />
+                            <div class="badge badge-pill badge-gold">12</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2267.png" data-toggle="tooltip"
+                                    title="Essence Reaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2207.png" data-toggle="tooltip"
+                                    title="Caulfield&#039;s Warhammer" />
+                                <img src="https://cdn.wildstats.gg/images/items/2202.png" data-toggle="tooltip"
+                                    title="Brawler&#039;s Gloves" />
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2581.png" data-toggle="tooltip"
+                                    title="Gluttonous Teleport" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">5</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">1</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">13</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">11k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-green">Win</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked Duo</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-green">Win</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked Duo</div>
+                        <div class="battle-log-date text-nowrap">21 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">21 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898781651648157411">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10060.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2267.png" data-toggle="tooltip"
+                                    title="Essence Reaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2242.png" data-toggle="tooltip"
+                                    title="Blade of the Ruined King" />
+                                <img src="https://cdn.wildstats.gg/images/items/2269.png" data-toggle="tooltip"
+                                    title="Serylda&#039;s Grudge" />
+                                <img src="https://cdn.wildstats.gg/images/items/2305.png" data-toggle="tooltip"
+                                    title="Chain Vest" />
+                                <img src="https://cdn.wildstats.gg/images/items/2480.png" data-toggle="tooltip"
+                                    title="Gluttonous Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">8</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">6</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">14</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">17k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-green">Win</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked Duo</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-green">Win</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked Duo</div>
+                        <div class="battle-log-date text-nowrap">21 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">21 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898783850670007579">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10060.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2267.png" data-toggle="tooltip"
+                                    title="Essence Reaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2161.png" data-toggle="tooltip"
+                                    title="Edge of Night" />
+                                <img src="https://cdn.wildstats.gg/images/items/2201.png" data-toggle="tooltip"
+                                    title="Long Sword" />
+                                <img src="https://cdn.wildstats.gg/images/items/2201.png" data-toggle="tooltip"
+                                    title="Long Sword" />
+                                <img src="https://cdn.wildstats.gg/images/items/2454.png" data-toggle="tooltip"
+                                    title="Mercury&#039;s Protobelt" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">7</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">7</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">14</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">15k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-green">Win</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked Duo</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-green">Win</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked Duo</div>
+                        <div class="battle-log-date text-nowrap">22 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">22 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898779452621465032">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10060.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                            <div class="battle-log-svp"></div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2267.png" data-toggle="tooltip"
+                                    title="Essence Reaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2269.png" data-toggle="tooltip"
+                                    title="Serylda&#039;s Grudge" />
+                                <img src="https://cdn.wildstats.gg/images/items/2242.png" data-toggle="tooltip"
+                                    title="Blade of the Ruined King" />
+                                <img src="https://cdn.wildstats.gg/images/items/2259.png" data-toggle="tooltip"
+                                    title="Guardian Angel" />
+                                <img src="https://cdn.wildstats.gg/images/items/2450.png" data-toggle="tooltip"
+                                    title="Mercury&#039;s Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">9</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">7</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">14</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">20k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-red">Loss</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked Duo</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-red">Loss</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked Duo</div>
+                        <div class="battle-log-date text-nowrap">22 hours ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">22 hours ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898780552101708299">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10028.jpg" />
+                            <div class="badge badge-pill badge-gold">13</div>
+                            <div class="battle-log-svp"></div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2356.png" data-toggle="tooltip"
+                                    title="Fimbulwinter" />
+                                <img src="https://cdn.wildstats.gg/images/items/2357.png" data-toggle="tooltip"
+                                    title="Frozen Heart" />
+                                <img src="https://cdn.wildstats.gg/images/items/2348.png" data-toggle="tooltip"
+                                    title="Thornmail" />
+                                <img src="https://cdn.wildstats.gg/images/items/2322.png" data-toggle="tooltip"
+                                    title="Giant&#039;s Belt" />
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2466.png" data-toggle="tooltip"
+                                    title="Steel-plated Stoneplate" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">4</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">4</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">7</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">12k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-red">Loss</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-red">Loss</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked</div>
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898777253543189170">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10093.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2245.png" data-toggle="tooltip"
+                                    title="Infinity Edge" />
+                                <img src="https://cdn.wildstats.gg/images/items/2263.png" data-toggle="tooltip"
+                                    title="Muramana" />
+                                <img src="https://cdn.wildstats.gg/images/items/2269.png" data-toggle="tooltip"
+                                    title="Serylda&#039;s Grudge" />
+                                <img src="https://cdn.wildstats.gg/images/items/2326.png" data-toggle="tooltip"
+                                    title="Jaurim&#039;s Fist" />
+                                <img src="https://cdn.wildstats.gg/images/items/2201.png" data-toggle="tooltip"
+                                    title="Long Sword" />
+                                <img src="https://cdn.wildstats.gg/images/items/2470.png" data-toggle="tooltip"
+                                    title="Ionian Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">2</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">5</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">9</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">14k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-red">Loss</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-red">Loss</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked</div>
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898780552076427614">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10093.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2263.png" data-toggle="tooltip"
+                                    title="Muramana" />
+                                <img src="https://cdn.wildstats.gg/images/items/2255.png" data-toggle="tooltip"
+                                    title="Youmuu&#039;s Ghostblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2256.png" data-toggle="tooltip"
+                                    title="Duskblade of Draktharr" />
+                                <img src="https://cdn.wildstats.gg/images/items/2249.png" data-toggle="tooltip"
+                                    title="Mortal Reminder" />
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2470.png" data-toggle="tooltip"
+                                    title="Ionian Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">4</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">3</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">7</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">14k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-red">Loss</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-red">Loss</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked</div>
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898780552051665944">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10037.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2350.png" data-toggle="tooltip"
+                                    title="Sterak&#039;s Gage" />
+                                <img src="https://cdn.wildstats.gg/images/items/2246.png" data-toggle="tooltip"
+                                    title="Maw of Malmortius" />
+                                <img src="https://cdn.wildstats.gg/images/items/2344.png" data-toggle="tooltip"
+                                    title="Warmog&#039;s Armor" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2341.png" data-toggle="tooltip"
+                                    title="Sunfire Aegis" />
+                                <img src="https://cdn.wildstats.gg/images/items/2454.png" data-toggle="tooltip"
+                                    title="Mercury&#039;s Protobelt" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">2</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">9</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">17</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">18k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-green">Win</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ultra Rapid Fire</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-green">Win</span>
+                        </div>
+                        <div class="battle-log-mode">Ultra Rapid Fire</div>
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898781651561978856">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10093.jpg" />
+                            <div class="badge badge-pill badge-gold">13</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2263.png" data-toggle="tooltip"
+                                    title="Muramana" />
+                                <img src="https://cdn.wildstats.gg/images/items/2255.png" data-toggle="tooltip"
+                                    title="Youmuu&#039;s Ghostblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2207.png" data-toggle="tooltip"
+                                    title="Caulfield&#039;s Warhammer" />
+                                <img src="https://cdn.wildstats.gg/images/items/2225.png" data-toggle="tooltip"
+                                    title="Last Whisper" />
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2470.png" data-toggle="tooltip"
+                                    title="Ionian Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">3</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">5</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">6</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">11k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-red">Loss</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked Duo</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-red">Loss</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked Duo</div>
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                </tr>
+                <tr data-toggle="redirect" data-url="/en/profile/uYMx9DHw09rvbi5iFNzH/battle/898781651560225574">
+                    <td>
+                        <div class="battle-log-icon">
+                            <img src="https://cdn.wildstats.gg/images/champions/icons/10060.jpg" />
+                            <div class="badge badge-pill badge-gold">15</div>
+                        </div>
+                    </td>
+                    <td class="battle-log-details">
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-5 battle-log-items order-2 order-lg-1">
+                                <img src="https://cdn.wildstats.gg/images/items/2267.png" data-toggle="tooltip"
+                                    title="Essence Reaver" />
+                                <img src="https://cdn.wildstats.gg/images/items/2257.png" data-toggle="tooltip"
+                                    title="Death&#039;s Dance" />
+                                <img src="https://cdn.wildstats.gg/images/items/2270.png" data-toggle="tooltip"
+                                    title="Solari Chargeblade" />
+                                <img src="https://cdn.wildstats.gg/images/items/2269.png" data-toggle="tooltip"
+                                    title="Serylda&#039;s Grudge" />
+                                <div class="battle-log-items-empty"></div>
+                                <img src="https://cdn.wildstats.gg/images/items/2470.png" data-toggle="tooltip"
+                                    title="Ionian Stasis" />
+                            </div>
+                            <div class="col-12 col-lg-7 battle-log-stats order-1 order-lg-2">
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-mathes-beige-24-dp_5@3x.png"
+                                        alt="Kills" class="d-none d-sm-inline-block" />
+                                    <div class="text-green">5</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-death-biege-16-dp_5@3x.png"
+                                        alt="Deaths" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-red">7</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <img src="https://cdn.wildstats.gg/images/ic-assist-biege-16-dp_5@3x.png"
+                                        alt="Assists" class="d-none d-sm-inline-block" />
+                                    <div class="d-sm-none text-muted">/</div>
+                                    <div class="text-vivid-gold">9</div>
+                                </div>
+                                <div class="battle-log-stats-item">
+                                    <div class="d-sm-none text-muted">&nbsp;</div>
+                                    <img src="https://cdn.wildstats.gg/images/ic-coins-beige-16-dp_5@3x.png"
+                                        alt="Gold" />
+                                    <div class="text-gold">15k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <span class="text-green">Win</span>
+                    </td>
+                    <td class="d-none d-md-table-cell">Ranked Duo</td>
+                    <td class="d-table-cell d-md-none text-right">
+                        <div class="battle-log-final">
+                            <span class="text-green">Win</span>
+                        </div>
+                        <div class="battle-log-mode">Ranked Duo</div>
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-right">
+                        <div class="battle-log-date text-nowrap">1 day ago</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        let topChart = new Chart(
+            document.getElementById("topChart").getContext("2d"),
+            {
+                type: "doughnut",
+                data: {
+                    datasets: [
+                        {
+                            data: [0, 100],
+                            backgroundColor: ["#5274cc", "#d05847"],
+                            borderColor: ["#030e1a", "#030e1a"],
+                            borderWidth: 3,
+                        },
+                    ],
+                    labels: ["Wins", "Losses"],
+                },
+                options: {
+                    cutoutPercentage: 85,
+                    legend: { display: false },
+                    tooltips: false,
+                },
+            }
+        );
+
+        let battleStats = {
+            allBattles: {
+                mvpWins: "98",
+                totalBattles: "3,744",
+                totalWins: "1,839",
+                winRate: 49.12,
+                teamKillRate: "188",
+                averageTeamKillRate: 250,
+                totalKda: 3.9,
+                averageKda: 530,
+                totalDamageDealtToTowers: 1387,
+                averageDamageDealtToTowers: 143,
+                totalDamageDealt: "13,154",
+                averageDamageDealt: 431,
+                totalGoldPerMinute: "581",
+                averageGoldPerMinute: 461,
+                totalDamageTaken: "17,197",
+                averageDamageTaken: 565,
+            },
+            normalBattles: {
+                mvpWins: "35",
+                totalBattles: "611",
+                totalWins: "299",
+                winRate: 48.94,
+                teamKillRate: "327",
+                averageTeamKillRate: 436,
+                totalKda: 3.3,
+                averageKda: 452,
+                totalDamageDealtToTowers: 1505,
+                averageDamageDealtToTowers: 155,
+                totalDamageDealt: "14,428",
+                averageDamageDealt: 473,
+                totalGoldPerMinute: "664",
+                averageGoldPerMinute: 526,
+                totalDamageTaken: "16,958",
+                averageDamageTaken: 557,
+            },
+            rankedBattles: {
+                mvpWins: "45",
+                totalBattles: "2,752",
+                totalWins: "1,336",
+                winRate: 48.55,
+                teamKillRate: "224",
+                averageTeamKillRate: 298,
+                totalKda: 4,
+                averageKda: 545,
+                totalDamageDealtToTowers: 1321,
+                averageDamageDealtToTowers: 136,
+                totalDamageDealt: "11,714",
+                averageDamageDealt: 384,
+                totalGoldPerMinute: "545",
+                averageGoldPerMinute: 432,
+                totalDamageTaken: "15,981",
+                averageDamageTaken: 525,
+            },
+        };
+
+        function drawStats(matchType, matchName) {
+            $("#battleTypeSelector").text(matchName);
+
+            if ($(window).width() < 576) {
+                topChart.data.datasets[0].borderColor = ["#030e1a", "#030e1a"];
+            } else {
+                topChart.data.datasets[0].borderColor = ["#051b2e", "#051b2e"];
+            }
+
+            if (
+                battleStats &&
+                battleStats[matchType + "Battles"] &&
+                battleStats[matchType + "Battles"].totalBattles
+            ) {
+                topChart.data.datasets[0].data = [
+                    battleStats[matchType + "Battles"].winRate,
+                    100 - battleStats[matchType + "Battles"].winRate,
+                ];
+                $("#battleStats_WinRate").text(
+                    battleStats[matchType + "Battles"].winRate + "%"
+                );
+                $("#battleStats_MVP").text(
+                    battleStats[matchType + "Battles"].mvpWins
+                );
+                $("#battleStats_Played").text(
+                    battleStats[matchType + "Battles"].totalBattles
+                );
+                $("#battleStats_Teamfight_bar").width(
+                    battleStats[matchType + "Battles"].averageTeamKillRate / 10 + "%"
+                );
+                $("#battleStats_Teamfight").text(
+                    battleStats[matchType + "Battles"].teamKillRate / 10 + "%"
+                );
+                $("#battleStats_Kda_bar").width(
+                    battleStats[matchType + "Battles"].averageKda / 10 + "%"
+                );
+                $("#battleStats_Kda").text(
+                    battleStats[matchType + "Battles"].totalKda
+                );
+                $("#battleStats_DamageDealtToTowers_bar").width(
+                    battleStats[matchType + "Battles"].averageDamageDealtToTowers / 10 +
+                    "%"
+                );
+                $("#battleStats_DamageDealtToTowers").text(
+                    battleStats[matchType + "Battles"].totalDamageDealtToTowers
+                );
+                $("#battleStats_DamageDealt_bar").width(
+                    battleStats[matchType + "Battles"].averageDamageDealt / 10 + "%"
+                );
+                $("#battleStats_DamageDealt").text(
+                    battleStats[matchType + "Battles"].totalDamageDealt
+                );
+                $("#battleStats_GoldPerMinute_bar").width(
+                    battleStats[matchType + "Battles"].averageGoldPerMinute / 10 + "%"
+                );
+                $("#battleStats_GoldPerMinute").text(
+                    battleStats[matchType + "Battles"].totalGoldPerMinute
+                );
+                $("#battleStats_DamageTaken_bar").width(
+                    battleStats[matchType + "Battles"].averageDamageTaken / 10 + "%"
+                );
+                $("#battleStats_DamageTaken").text(
+                    battleStats[matchType + "Battles"].totalDamageTaken
+                );
+            } else {
+                topChart.data.datasets[0].data = [0, 100];
+                $("#battleStats_WinRate").text("...");
+                $("#battleStats_Played").text("...");
+                $("#battleStats_Teamfight_bar").width(0);
+                $("#battleStats_Teamfight").text("...");
+                $("#battleStats_MVP").text("...");
+                $("#battleStats_Kda_bar").width(0);
+                $("#battleStats_Kda").text("...");
+                $("#battleStats_DamageDealtToTowers_bar").width(0);
+                $("#battleStats_DamageDealtToTowers").text("...");
+                $("#battleStats_DamageDealt_bar").width(0);
+                $("#battleStats_DamageDealt").text("...");
+                $("#battleStats_GoldPerMinute_bar").width(0);
+                $("#battleStats_GoldPerMinute").text("...");
+                $("#battleStats_DamageTaken_bar").width(0);
+                $("#battleStats_DamageTaken").text("...");
+            }
+            topChart.update();
+        }
+
+        $(function () {
+            drawStats("all", "All Battles");
+        });
+    </script>
+
+    <div class="container-fluid px-0 footer">
+        <div class="container p-2 p-sm-0">
+            <div class="row py-4 px-0 m-0 footer-container">
+                <div class="col-12 col-md-10 order-1 text-center text-md-left">
+                    <a href="#">
+                        <img src="https://cdn.wildstats.gg/images/icons-social-fb.svg" />
+                    </a>
+                    <a href="https://twitter.com/WildStatsGG">
+                        <img src="https://cdn.wildstats.gg/images/icons-social-twitter.svg" />
+                    </a>
+                    <a href="https://discord.gg/3jV3nDtgMY"><img
+                            src="https://cdn.wildstats.gg/images/icons-social-discord.svg" /></a>
+                </div>
+
+                <div class="col-12 col-md-2 order-3 order-md-2 text-center text-md-right">
+                    <a href="https://overwolf.com" class="footer_brand">
+                        <img src="https://cdn.wildstats.gg/images/Overwolf_logo_white_vertical_transparent.svg" />
+                    </a>
+                </div>
+
+                <div class="col-12 col-md-10 order-2 pt-2 pt-md-0 order-md-3 text-muted">
+                    <p>
+                        Wild Stats isn't endorsed by Riot Games and doesn't reflect the
+                        views or opinions of Riot Games or anyone officially involved in
+                        producing or managing Wild Rift. Wild Rift and Riot Games are
+                        trademarks or registered trademarks of Riot Games. Wild Rift ©
+                        Riot Games.
+                        <a href="http://www.overwolf.com/legal/#Privacy-policy"><span class="text-nowrap">Privacy
+                                Policy</span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

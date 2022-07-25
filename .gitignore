@@ -6,3 +6,6 @@ dist
 
 package-lock.json
 .vercel
+
+**/**/*.swp
+**/**/.DS_Store
