@@ -1,6 +1,5 @@
 import axios from "axios";
-import cheerio from "cheerio";
-
+import { load } from "cheerio";
 import { BASE_API_ENDPOINT, REGION_KEY } from "./constant";
 
 async function getUserStatsPlain(
@@ -36,7 +35,7 @@ async function historyTable(
   win_color: string,
   lose_color: string
 ): Promise<string> {
-  const doc = cheerio.load(html);
+  const doc = load(html);
   const trs = doc("tbody > tr").toArray().slice(0, max);
 
   const profiles = await Promise.all(
@@ -76,16 +75,21 @@ async function historyTable(
   const KDA = await Promise.all(
     trs.map(async (tr, i) => {
       const tds = doc(tr).find("td").toArray();
-      const itemsbase64 = doc(tds[1])
+      const kdas = doc(tds[1])
         .find(".battle-log-stats > .battle-log-stats-item > div")
         .toArray()
         .slice(0, 6)
-        .map((e) => doc(e).text().trim());
+        .map((e) => doc(e).text().trim())
+        .filter((e) => e != "");
 
-      const items = itemsbase64.map((e, ie) => {
-        return `<text x="${ie == 0 ? 60 : ie * 20 + 60}" y="${
+      let writed = 0;
+      const items = kdas.map((e, ie) => {
+        console.log(`write ${e} ${ie} ${i} ${e.length} ${writed}`);
+        const writeText = `<text x="${ie == 0 ? 60 : writed * 20 + 60}" y="${
           i * 50 + 35
         }">${e}</text>`;
+        writed += e.length;
+        return writeText;
       });
       return items.join("");
     })
@@ -110,7 +114,7 @@ async function historyTable(
   );
 
   const out = `
-  <svg width="300px" height="${50 * max}px" version="1.1"
+  <svg width="350px" height="${50 * max}px" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     text {

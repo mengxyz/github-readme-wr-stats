@@ -2,7 +2,7 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 import chromium from "chrome-aws-lambda";
 import fs from "fs";
 import { extractPlayerInfo } from "../extract-data";
-import { BASE_API_ENDPOINT } from "../constant";
+import { BASE_API_ENDPOINT, REGION_KEY } from "../constant";
 
 export default async (req: VercelRequest, res: VercelResponse) => {
   let browser;
@@ -25,11 +25,24 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       ignoreHTTPSErrors: true,
     });
     page = await browser.newPage();
-    await page.goto(`${BASE_API_ENDPOINT}${profile}`);
+    await page.goto(
+      `${BASE_API_ENDPOINT}${profile}`.replace(
+        REGION_KEY,
+        req.query.region as string
+      )
+    );
     const playerInfo = await extractPlayerInfo(page);
     let template = html.replace("{ID}", playerInfo.name + "#" + playerInfo.tag);
     template = template.replace("{RANK}", playerInfo.rank.title);
     template = template.replace("{RANK_ICON}", playerInfo.rank.logoUrl);
+    template = template.replace(
+      "{CARD_BG}",
+      (req.query.bg_color ?? "white") as string
+    );
+    template = template.replace(
+      "{FONT_COLOR}",
+      (req.query.font_color ?? "black") as string
+    );
     await page.setContent(template);
     const content = await page.$("#profile-content");
     const imgBuffer = await content?.screenshot({ omitBackground: true });
